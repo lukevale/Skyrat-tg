@@ -1261,9 +1261,6 @@
 /mob/living/proc/resist_restraints()
 	return
 
-/mob/living/proc/get_visible_name()
-	return name
-
 /mob/living/proc/update_gravity(gravity)
 	// Handle movespeed stuff
 	var/speed_change = max(0, gravity - STANDARD_GRAVITY)
@@ -1467,8 +1464,8 @@
 	else
 		for(var/obj/item/item in src)
 			if(!dropItemToGround(item))
-				qdel(item)
-				continue
+				if(!(item.item_flags & ABSTRACT))
+					qdel(item)
 			item_contents += item
 
 	var/mob/living/new_mob
@@ -2121,7 +2118,11 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
-	return !(incapacitated(IGNORE_RESTRAINTS))
+	if(next_move > world.time)
+		return FALSE
+	if(incapacitated(IGNORE_RESTRAINTS))
+		return FALSE
+	return TRUE
 
 /**
  * look_up Changes the perspective of the mob to any openspace turf above the mob
@@ -2598,7 +2599,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	mob_mood.clear_mood_event(mood_events[chosen])
 
 /// Adds a mood event to the mob
-/mob/living/proc/add_mood_event(category, type, timeout_mod, ...)
+/mob/living/proc/add_mood_event(category, type, ...)
 	if(QDELETED(mob_mood))
 		return
 	mob_mood.add_mood_event(arglist(args))
@@ -2699,7 +2700,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(isnull(guardian_client))
 		return
 	else if(guardian_client == "Poll Ghosts")
-		var/list/candidates = poll_ghost_candidates("Do you want to play as an admin created Guardian Spirit of [real_name]?", ROLE_PAI, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+		var/list/candidates = SSpolling.poll_ghost_candidates("Do you want to play as an admin created Guardian Spirit of [real_name]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HOLOPARASITE, pic_source = src, role_name_text = "guardian spirit")
 		if(LAZYLEN(candidates))
 			var/mob/dead/observer/candidate = pick(candidates)
 			guardian_client = candidate.client
@@ -2731,3 +2732,21 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	message_admins(span_adminnotice("[key_name_admin(admin)] gave a guardian spirit controlled by [guardian_client || "AI"] to [src]."))
 	log_admin("[key_name(admin)] gave a guardian spirit controlled by [guardian_client] to [src].")
 	BLACKBOX_LOG_ADMIN_VERB("Give Guardian Spirit")
+
+/mob/living/verb/lookup()
+	set name = "Look Up"
+	set category = "IC"
+
+	if(client.perspective != MOB_PERSPECTIVE)
+		end_look_up()
+	else
+		look_up()
+
+/mob/living/verb/lookdown()
+	set name = "Look Down"
+	set category = "IC"
+
+	if(client.perspective != MOB_PERSPECTIVE)
+		end_look_down()
+	else
+		look_down()

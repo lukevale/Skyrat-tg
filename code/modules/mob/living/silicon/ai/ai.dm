@@ -106,7 +106,7 @@
 
 	var/atom/movable/screen/ai/modpc/interfaceButton
 	///whether its mmi is a posibrain or regular mmi when going ai mob to ai core structure
-	var/posibrain_inside = FALSE
+	var/posibrain_inside = TRUE
 	///whether its cover is opened, so you can wirecut it for deconstruction
 	var/opened = FALSE
 	///whether AI is anchored or not, used for checks
@@ -443,10 +443,9 @@
 	disconnect_shell()
 	ShutOffDoomsdayDevice()
 	var/obj/structure/ai_core/deactivated/ai_core = new(get_turf(src), /* skip_mmi_creation = */ TRUE)
-	if(!make_mmi_drop_and_transfer(ai_core.core_mmi, the_core = ai_core))
-		return FALSE
-	qdel(src)
-	return TRUE
+	if(make_mmi_drop_and_transfer(ai_core.core_mmi, the_core = ai_core))
+		qdel(src)
+	return ai_core
 
 /mob/living/silicon/ai/proc/make_mmi_drop_and_transfer(obj/item/mmi/the_mmi, the_core)
 	var/mmi_type
@@ -497,10 +496,6 @@
 	if(incapacitated())
 		return
 
-	if (href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
-		unset_machine()
-		src << browse(null, t1)
 	if (href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"]) in GLOB.cameranet.cameras)
 	if (href_list["showalerts"])
@@ -903,7 +898,7 @@
 	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
-	var/raw_translation = translate_language(speaker, message_language, raw_message)
+	var/raw_translation = translate_language(speaker, message_language, raw_message, spans, message_mods)
 	var/atom/movable/source = speaker.GetSource() || speaker // is the speaker virtual/radio
 	var/treated_message = source.say_quote(raw_translation, spans, message_mods)
 
