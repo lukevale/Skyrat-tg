@@ -173,12 +173,6 @@
 	SET_PLANE_EXPLICIT(body, ABOVE_HUD_PLANE, location)
 	return body
 
-/datum/hallucination/body/weird/freezer/queue_cleanup()
-	QDEL_IN(src, 12 SECONDS) //The freezer stays on screen while you're frozen
-	addtimer(CALLBACK(src, PROC_REF(freeze_player)), 1 SECONDS) // You barely have a moment to react before you're frozen
-	addtimer(CALLBACK(src, PROC_REF(freeze_intimidate)), 11.8 SECONDS)
-	hallucinator.cause_hallucination(/datum/hallucination/fake_sound/weird/radio_static, "freezer hallucination")
-	return TRUE
 
 /datum/hallucination/body/weird/freezer/proc/freeze_player()
 	if(QDELETED(src))
