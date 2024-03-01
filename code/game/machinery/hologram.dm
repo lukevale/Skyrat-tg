@@ -46,7 +46,6 @@ Possible to do for anyone motivated enough:
 	max_integrity = 300
 	armor_type = /datum/armor/machinery_holopad
 	circuit = /obj/item/circuitboard/machine/holopad
-	// Blue, dim light
 	light_power = 0.8
 	light_color = LIGHT_COLOR_BLUE
 	/// associative lazylist of the form: list(owner of a hologram = hologram representing that owner).
