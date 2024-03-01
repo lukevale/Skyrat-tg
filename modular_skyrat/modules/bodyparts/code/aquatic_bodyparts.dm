@@ -2,7 +2,7 @@
 /obj/item/bodypart/head/mutant/aquatic
 	icon_greyscale = BODYPART_ICON_AQUATIC
 	limb_id = SPECIES_AQUATIC
-	bodyshape = parent_type::bodyshape | BODYSHAPE_SNOUTED
+	//bodyshape = parent_type::bodyshape | BODYSHAPE_SNOUTED
 
 /obj/item/bodypart/chest/mutant/aquatic
 	icon_greyscale = BODYPART_ICON_AQUATIC

@@ -57,7 +57,7 @@
 	icon_greyscale = BODYPART_ICON_SYNTHLIZARD
 	should_draw_greyscale = TRUE
 	limb_id = BODYPART_ID_DIGITIGRADE
-	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	//bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
 	base_limb_id = BODYPART_ID_DIGITIGRADE
 	change_exempt_flags = NONE
 	brute_modifier = SYNTH_BRUTE_MODIFIER
@@ -71,7 +71,7 @@
 	icon_greyscale = BODYPART_ICON_SYNTHLIZARD
 	should_draw_greyscale = TRUE
 	limb_id = BODYPART_ID_DIGITIGRADE
-	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	//bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
 	base_limb_id = BODYPART_ID_DIGITIGRADE
 	change_exempt_flags = NONE
 	brute_modifier = SYNTH_BRUTE_MODIFIER

@@ -60,7 +60,7 @@
 /obj/item/bodypart/leg/left/digitigrade
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = "digitigrade"
-	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	//bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
 	base_limb_id = "digitigrade"
 
 /obj/item/bodypart/leg/left/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
@@ -70,7 +70,7 @@
 /obj/item/bodypart/leg/right/digitigrade
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = "digitigrade"
-	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	//bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
 	base_limb_id = "digitigrade"
 
 /obj/item/bodypart/leg/right/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
