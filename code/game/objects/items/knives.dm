@@ -174,7 +174,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A sharpened bone. The bare minimum in survival."
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
-	obj_flags = parent_type::obj_flags & ~CONDUCTS_ELECTRICITY
+	//obj_flags = parent_type::obj_flags & ~CONDUCTS_ELECTRICITY
 	slot_flags = NONE
 	force = 15
 	throwforce = 15
@@ -194,7 +194,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A makeshift glass shiv."
-	obj_flags = parent_type::obj_flags & ~CONDUCTS_ELECTRICITY
+	//obj_flags = parent_type::obj_flags & ~CONDUCTS_ELECTRICITY
 	force = 8
 	throwforce = 12
 	attack_verb_continuous = list("shanks", "shivs")
