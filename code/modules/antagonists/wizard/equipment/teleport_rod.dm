@@ -28,7 +28,7 @@
 
 // Admin only version which just teleports you, so spam it all you want
 /obj/item/teleport_rod/admin
-	name = "Harmonious " + parent_type::name
+	//name = "Harmonious " + parent_type::name
 	desc = "A magical rod that teleports you anywhere, no questions asked."
 	apply_debuffs = FALSE
 	max_tp_range = INFINITY
@@ -220,7 +220,7 @@
 	icon_state = "flux"
 
 /atom/movable/screen/alert/status_effect/teleport_flux/perma
-	name = "Permanent " + parent_type::name
+	//name = "Permanent " + parent_type::name
 	desc = "Your lack of magical talent has left you in a state of flux, making further teleportation dangerous."
 
 /// Particles for Teleport Flux and other similar effects
